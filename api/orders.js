@@ -69,13 +69,17 @@ async function sendNotifications(order) {
 
   const { TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_FROM_NUMBER } = process.env;
   if (TWILIO_ACCOUNT_SID && TWILIO_AUTH_TOKEN && TWILIO_FROM_NUMBER) {
-    const client = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
-    const items = order.items.map((item) => `${item.name} x${item.quantity}`).join(', ');
-    await client.messages.create({
-      body: `World of Wines confirmation ${order.orderId}: Thank you for your purchase! ${order.fulfillment} order: ${items}. Total $${Number(order.subtotal).toFixed(2)}.`,
-      from: TWILIO_FROM_NUMBER,
-      to: order.phone,
-    });
+    try {
+      const client = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
+      const items = order.items.map((item) => `${item.name} x${item.quantity}`).join(', ');
+      await client.messages.create({
+        body: `World of Wines confirmation ${order.orderId}: Thank you for your purchase! ${order.fulfillment} order: ${items}. Total $${Number(order.subtotal).toFixed(2)}.`,
+        from: TWILIO_FROM_NUMBER,
+        to: order.phone,
+      });
+    } catch (error) {
+      console.error('SMS confirmation failed after email delivery:', error.message);
+    }
   }
 }
 

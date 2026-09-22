@@ -777,6 +777,12 @@ footer span { color: #d9c8bf; }
   margin-top: 22px;
 }
 
+.checkout-error {
+  color: var(--burgundy);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
 #checkoutForm label {
   display: grid;
   gap: 7px;

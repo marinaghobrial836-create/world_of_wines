@@ -461,6 +461,7 @@ $('checkoutForm').addEventListener('submit', (event) => {
 
   submitButton.disabled = true;
   submitButton.textContent = 'Sending confirmation...';
+  $('checkoutError').hidden = true;
   fetch('/api/orders', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -480,7 +481,11 @@ $('checkoutForm').addEventListener('submit', (event) => {
       saveCart();
       $('continueShopping').focus();
     })
-    .catch((error) => announce(error.message))
+    .catch((error) => {
+      $('checkoutError').textContent = error.message;
+      $('checkoutError').hidden = false;
+      announce(error.message);
+    })
     .finally(() => {
       submitButton.disabled = false;
       submitButton.textContent = 'Place order';
