@@ -224,15 +224,35 @@ function bottleClass(category) {
 
 function productImageUrl(product) {
   const category = String(product.category || '').toLowerCase();
+  const brand = `${product.brand} ${product.name}`.toLowerCase();
   const fallbackByCategory = {
-    wine: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=80',
-    whiskey: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=900&q=80',
-    tequila: 'https://images.unsplash.com/photo-1560508180-4d5f3b6d9b9d?auto=format&fit=crop&w=900&q=80',
-    rum: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80',
-    beer: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=900&q=80',
+    wine: [
+      'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?auto=format&fit=crop&w=900&q=80',
+    ],
+    whiskey: [
+      'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1527281400683-1aae777175f8?auto=format&fit=crop&w=900&q=80',
+    ],
+    tequila: [
+      'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80',
+    ],
+    rum: [
+      'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=900&q=80',
+    ],
+    beer: [
+      'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=900&q=80',
+      'https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=80',
+    ],
   };
 
-  return product.image || fallbackByCategory[category] || fallbackByCategory.wine;
+  const fallbackCategory = fallbackByCategory[category] ? category : 'wine';
+  const images = fallbackByCategory[fallbackCategory];
+  const brandImage = /casamigos|don julio/.test(brand) && fallbackByCategory.tequila;
+  const selectedImages = brandImage || images;
+  return product.image || selectedImages[product.id % selectedImages.length];
 }
 
 function renderProducts() {
