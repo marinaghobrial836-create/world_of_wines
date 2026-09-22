@@ -40,7 +40,9 @@ function orderEmail(order, recipientLabel) {
 async function sendNotifications(order) {
   const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS } = process.env;
   if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
-    throw new Error('Email service is not configured.');
+    const error = new Error('Email service is not configured in Vercel.');
+    error.code = 'EMAIL_NOT_CONFIGURED';
+    throw error;
   }
 
   const transporter = nodemailer.createTransport({
@@ -101,6 +103,9 @@ module.exports = async function handler(req, res) {
     res.status(200).json({ ok: true });
   } catch (error) {
     console.error('Order notification failed:', error.message);
-    res.status(500).json({ error: 'We could not send the order confirmation. Please try again.' });
+    const message = error.code === 'EMAIL_NOT_CONFIGURED'
+      ? 'Order email is not configured yet. Please contact the store or try again later.'
+      : 'We could not send the order confirmation. Please try again.';
+    res.status(500).json({ error: message });
   }
 };
