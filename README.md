@@ -23,6 +23,17 @@ The simplest public deployment is Render:
 
 Keep the checkout email field because it is needed to send the customer's order confirmation; it is not used for site access or authentication.
 
+### No-card option: Vercel
+
+You can deploy through Vercel's free GitHub integration without entering a card:
+
+1. Open [vercel.com/new](https://vercel.com/new) and sign in with GitHub.
+2. Import `marinaghobrial836-create/world_of_wines`.
+3. Click **Deploy**. The included `vercel.json` routes the public files and order endpoint.
+4. Open **Project Settings -> Environment Variables** and add the SMTP variables below. Add the Twilio variables too if SMS confirmations are wanted.
+
+Vercel will provide a public URL that anyone can open without logging in.
+
 ## Order confirmation email
 
 Checkout asks whether the customer wants Delivery or Pickup, then sends a detailed confirmation to `worldofwines1@gmail.com` and the customer's checkout email address. Both emails include the confirmation number, customer details, fulfillment choice, product names, quantities, per-item costs, and total cost. The customer's phone number is included in the emails.
