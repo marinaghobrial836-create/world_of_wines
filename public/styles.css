@@ -790,6 +790,33 @@ footer span { color: #d9c8bf; }
   font-weight: 700;
 }
 
+#checkoutForm fieldset {
+  border: 1px solid var(--line);
+  margin: 0;
+  padding: 12px 16px 10px;
+}
+
+#checkoutForm legend {
+  padding: 0 5px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+#checkoutForm .radio-label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 500;
+  margin: 8px 0;
+}
+
+#checkoutForm .radio-label input {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

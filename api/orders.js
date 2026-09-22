@@ -106,7 +106,7 @@ module.exports = async function handler(req, res) {
     console.error('Order notification failed:', error.message);
     const message = error.code === 'EMAIL_NOT_CONFIGURED'
       ? 'Order email is not configured in Vercel. Add the SMTP settings, then redeploy.'
-      : 'Gmail rejected the order email. Check the Gmail app password and SMTP settings in Vercel, then redeploy.';
+      : `Gmail rejected the order email (${error.code || 'SMTP error'}). Check the Gmail app password and SMTP settings in Vercel, then redeploy.`;
     res.status(500).json({ error: message });
   }
 };
