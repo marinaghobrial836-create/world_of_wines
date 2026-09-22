@@ -105,10 +105,11 @@ async function sendOrderEmails(order) {
   }
 
   const transporter = nodemailer.createTransport({
+    service: 'gmail',
     host: SMTP_HOST,
     port: Number(SMTP_PORT || 587),
     secure: Number(SMTP_PORT || 587) === 465,
-    auth: { user: SMTP_USER, pass: SMTP_PASS },
+    auth: { user: SMTP_USER, pass: SMTP_PASS.replace(/\s/g, '') },
   });
 
   const from = process.env.SMTP_FROM || SMTP_USER;
