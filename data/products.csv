@@ -1,0 +1,19 @@
+Category,Type,Brand,Name,Inventory,Price,Size,Image
+Wine,Red,Stags Leap,Reserve Cabernet Sauvignon,12,34.99,750ml,
+Wine,White,Chateau D'Or,Classic Sauvignon Blanc,18,26.50,750ml,
+Wine,Rosé,Velvet Bloom,Sunset Rosé,8,22.00,750ml,
+Whiskey,Single Malt,Highland Peak,12-Year Reserve,5,58.00,750ml,
+Tequila,Blanco,Sierra Azul,Silver Tequila,14,39.00,750ml,https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=900&q=80
+Rum,Dark,Bay Harbor,Spiced Rum,21,31.95,750ml,
+Beer,Ale,Briar Creek,Amber Ale,32,12.50,12oz,
+Wine,Red,Orchard Crest,Merlot Reserve,9,29.75,750ml,
+Whiskey,Bourbon,Old Hollow,Small Batch Bourbon,7,49.00,750ml,
+Tequila,Reposado,Sol de Cielo,Reposado,11,46.50,750ml,https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80
+Rum,White,Caribbean Tide,Silver Rum,16,28.00,750ml,
+Beer,Lager,North River,Pilsner,27,11.00,12oz,
+Wine,White,Mountain Vale,Pinot Grigio,6,24.25,750ml,
+Whiskey,Rye,Stone & Ember,Rye Finish,4,62.50,750ml,
+Tequila,Blanco,Cielo Norte,Crystal Blanco,0,42.00,750ml,https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=900&q=80
+Wine,Red,Harvest House,Pinot Noir,10,27.99,750ml,
+Rum,Dark,Island Lantern,Dark Rum,0,33.00,750ml,
+Beer,Cider,Apple Grove,Hard Cider,19,13.75,12oz,

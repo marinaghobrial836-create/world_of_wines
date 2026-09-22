@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>World of Wines</title>
+    <meta
+      name="description"
+      content="A curated cellar of wines, spirits, and craft favorites."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="topbar__inner">
+        <span>Visit us in the East Village</span>
+        <span class="status">Pickup available daily</span>
+        <a href="#contact">Visit the cellar</a>
+      </div>
+    </div>
+
+    <header class="navbar">
+      <a class="brand" href="#top" aria-label="World of Wines home">
+        <div class="brand-mark">WO<span>W</span></div>
+        <div class="brand-text">World of Wines</div>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#shop">Shop</a>
+
+        <div class="dropdown">
+          <button class="dropdown__button" type="button" aria-expanded="false" aria-haspopup="true">
+            Browse
+          </button>
+          <div class="dropdown__menu" role="menu" aria-label="Browse categories">
+            <a href="#shop" data-category-link="Wine">Wine</a>
+            <a href="#shop" data-category-link="Whiskey">Whiskey</a>
+            <a href="#shop" data-category-link="Tequila">Tequila</a>
+            <a href="#shop" data-category-link="Rum">Rum</a>
+            <a href="#shop" data-category-link="Beer">Beer</a>
+          </div>
+        </div>
+
+        <a href="#about">Our Story</a>
+        <a href="#contact">Contact</a>
+
+        <button class="cart-button" id="cartButton" type="button" aria-label="View shopping cart">
+          Cart
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-label="Featured collection">
+        <div class="hero__glow" aria-hidden="true"></div>
+
+        <div class="hero__content">
+          <p class="eyebrow">Curated cellar</p>
+          <h2>Fine <em>wines</em> for everyday rituals.</h2>
+          <p class="hero__copy">
+            From expressive reds to crisp whites and small-batch spirits, discover bottles chosen
+            for dinner parties, date nights, and slow Sunday pours.
+          </p>
+          <a class="button button--primary hero__button" href="#shop">Shop the collection</a>
+        </div>
+
+        <div class="hero__bottle" aria-hidden="true">
+          <div class="hero-bottle__neck"></div>
+          <div class="hero-bottle__body">
+            <span>WOW<small>EST.</small></span>
+          </div>
+        </div>
+      </section>
+
+      <div class="quick-info" aria-label="Store highlights">
+        <div>
+          <strong>120+</strong>
+          <span>hand-picked bottles</span>
+        </div>
+        <div>
+          <strong>Less than 2h</strong>
+          <span>locally</span>
+        </div>
+        <div>
+          <strong>4.9/5</strong>
+          <span>cellar rating</span>
+        </div>
+      </div>
+
+      <section class="shop-section" id="shop">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Bottle list</p>
+            <h2>Explore the collection</h2>
+          </div>
+          <p class="section-note">Fresh arrivals and cellar favorites.</p>
+        </div>
+
+        <div class="shop-layout">
+          <aside class="filters" aria-label="Filter products">
+            <div class="filter-head">
+              <h3>Filters</h3>
+              <button id="clearFilters" type="button">Clear</button>
+            </div>
+
+            <form id="filterForm">
+              <label class="filter-label" for="categoryFilter">Category</label>
+              <select id="categoryFilter" name="category"></select>
+
+              <label class="filter-label" for="typeFilter">Type</label>
+              <select id="typeFilter" name="type"></select>
+
+              <label class="filter-label" for="brandFilter">Brand</label>
+              <select id="brandFilter" name="brand"></select>
+
+              <label class="filter-label" for="searchInput">Search</label>
+              <input id="searchInput" type="search" placeholder="Search bottles" />
+
+              <label class="filter-label" for="minPrice">Price range</label>
+              <div class="price-row">
+                <input id="minPrice" type="number" min="0" step="0.01" placeholder="Min" />
+                <span>—</span>
+                <input id="maxPrice" type="number" min="0" step="0.01" placeholder="Max" />
+              </div>
+
+              <div id="filterError" class="filter-error" hidden>
+                Min price cannot be greater than max price.
+              </div>
+
+              <label class="filter-label" for="sortFilter">Sort by</label>
+              <select id="sortFilter" name="sort">
+                <option value="featured">Featured</option>
+                <option value="price-low">Price: low to high</option>
+                <option value="price-high">Price: high to low</option>
+                <option value="name">Name</option>
+              </select>
+
+              <label class="stock-filter" for="inStockFilter">
+                <input id="inStockFilter" type="checkbox" />
+                <span>In stock only</span>
+              </label>
+
+              <button id="applyFilters" class="button button--primary filter-submit" type="button">
+                Apply filters
+              </button>
+            </form>
+          </aside>
+
+          <div>
+            <div id="sheetStatus" class="sheet-status" hidden></div>
+            <div class="results-bar" id="resultsCount">0 products</div>
+
+            <div id="productGrid" class="product-grid" aria-live="polite"></div>
+
+            <div id="emptyState" class="empty-state" hidden>
+              <h3>No bottles match your search</h3>
+              <p>Try broadening your filters or choosing a different category.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section" id="about">
+        <div>
+          <p class="eyebrow">Why us</p>
+          <h2>Thoughtful pours for memorable nights.</h2>
+          <p>
+            We carefully source bottles from small producers and premiere sellers that value place,
+            craft, and character. Every shelf is assembled to help you find a bottle that feels like
+            the right fit, whether it is a quiet weeknight pour or a celebratory toast.
+          </p>
+
+          <div class="about-details">
+            <p>Curated collections</p>
+            <p>Seasonal recommendations</p>
+            <p>Pairs for dinner and dessert</p>
+          </div>
+        </div>
+
+        <div>
+          <img
+            class="about-delivery-image"
+            alt="Illustration of a delivery van with wine bottles"
+            src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=80"
+          />
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact">
+        <div>
+          <p class="eyebrow">Visit us</p>
+          <h2>Find your next favorite bottle.</h2>
+        </div>
+
+        <div class="contact-card">
+          <p><strong>World of Wines</strong></p>
+          <p>159 Avenue C, Corner of E 10th Street, New York, New York 10009</p>
+          <p>Open daily from 12 pm to 12 am</p>
+          <p><a href="tel:+12129958200">(212) 995-8200</a></p>
+          <p><a href="mailto:worldofwines1@gmail.com">worldofwines1@gmail.com</a></p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>
+        <strong>World of Wines</strong>
+        <span>Thoughtfully selected spirits, wines, and good evenings.</span>
+      </div>
+      <div>
+        <span>© <span id="year">2026</span> World of Wines</span>
+        <span>Curated cellar • Local pickup</span>
+      </div>
+    </footer>
+
+    <div id="drawerBackdrop" class="drawer-backdrop" hidden></div>
+
+    <aside id="cartDrawer" class="cart-drawer" aria-hidden="true">
+      <div class="drawer-header">
+        <h2>Your cart</h2>
+        <button id="closeCart" class="close-button" type="button" aria-label="Close cart">×</button>
+      </div>
+
+      <div id="cartItems" class="cart-items"></div>
+
+      <div class="cart-footer">
+        <div class="subtotal">
+          <span>Subtotal</span>
+          <strong id="cartSubtotal">$0.00</strong>
+        </div>
+
+        <p class="cart-note">Taxes and shipping are calculated at checkout.</p>
+        <button id="checkoutButton" class="button button--primary full-width" type="button">
+          Checkout
+        </button>
+      </div>
+    </aside>
+
+    <div id="checkoutModal" class="modal-backdrop" hidden>
+      <div class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+        <button id="closeCheckout" class="close-button modal-close" type="button" aria-label="Close checkout">
+          ×
+        </button>
+
+        <div id="checkoutFormView">
+          <p class="eyebrow">Checkout</p>
+          <h2 id="checkoutTitle">Complete your order</h2>
+
+          <form id="checkoutForm">
+            <div class="form-grid">
+              <label>
+                First name
+                <input type="text" name="firstName" required />
+              </label>
+              <label>
+                Last name
+                <input type="text" name="lastName" required />
+              </label>
+            </div>
+
+            <label>
+              Email address
+              <input type="email" name="email" required />
+            </label>
+
+            <label>
+              Phone number
+              <input type="tel" name="phone" autocomplete="tel" required />
+            </label>
+
+            <fieldset>
+              <legend>How would you like to receive your order?</legend>
+              <label class="radio-label">
+                <input type="radio" name="fulfillment" value="Delivery" required />
+                <span>Delivery</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="fulfillment" value="Pickup" required />
+                <span>Pickup</span>
+              </label>
+            </fieldset>
+
+            <label>
+              Delivery address
+              <input type="text" name="address" required />
+            </label>
+
+            <div class="form-grid">
+              <label>
+                City
+                <input type="text" name="city" required />
+              </label>
+              <label>
+                ZIP code
+                <input type="text" name="zip" required />
+              </label>
+            </div>
+
+            <div class="payment-notice">
+              <strong>Payment</strong>
+              <span>Pay securely at pickup or during delivery.</span>
+            </div>
+
+            <label class="checkbox-label">
+              <input type="checkbox" name="terms" required />
+              <span>I agree to receive order updates and pickup notifications.</span>
+            </label>
+
+            <button class="button button--primary full-width" type="submit">Place order</button>
+          </form>
+        </div>
+
+        <div id="thankYouView" class="thank-you" hidden>
+          <div class="thank-icon" aria-hidden="true">✓</div>
+          <p class="eyebrow">Thank you</p>
+          <h2>Your order is confirmed</h2>
+          <p id="orderNumber" class="order-number">Order number: WOW-000000</p>
+          <button id="continueShopping" class="button button--primary" type="button">
+            Continue shopping
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="statusMessage" class="sr-only" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
